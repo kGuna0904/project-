@@ -8,9 +8,9 @@ const RAMP = " .:-=+*#%$@";
 
 export default function AsciiCard({id}: {id?: string}) {
     //stating that it only has two states, and using type validator
-    const [stream, setStream] = useState<MediaStream | null>(null);
-    const [error, setError] = useState<string | null>(null);
-    const [active, setActive] = useState(false);
+    const [stream, setStream] = useState<MediaStream | null>(null);//stream status
+    const [error, setError] = useState<string | null>(null);//error status
+    const [active, setActive] = useState(false);// active status
     
     //to access the external dom elements
     const videoRef = useRef<HTMLVideoElement>(null);
@@ -18,14 +18,14 @@ export default function AsciiCard({id}: {id?: string}) {
     const outputRef = useRef<HTMLCanvasElement>(null);
 
 
-        //stream can carry multiple tracks such as video, audio
+    //stream can carry multiple tracks such as video, audio
     useEffect(() => {
         //videoRef.current creates the <video> dom node
         //stream could be null or undefined if permissions not resolved
         if (videoRef.current && stream) {
             videoRef.current.srcObject = stream;//video elements have a seperate property, srcObject specifically for the live streaming objects and destructuring the props to the stream
         }
-    }, [stream]);//re runs whenever the stram changes
+    }, [stream]);//re runs whenever the stream changes
 
     //
     useEffect(() => {
@@ -65,7 +65,7 @@ export default function AsciiCard({id}: {id?: string}) {
             
             //font is monospace and size equals to the cell height pixels
             outputCtx.font = `${cellH}px monospace`;
-            outputCtx.textBaseline = "top";//fills text at the y value incicating vertically
+            outputCtx.textBaseline = "top";//fills text at the y value intiating vertically
             outputCtx.fillStyle = "white";//the text style being white, uses this color to draw on the canvas
             
             //y is the row top to bottom and x is the columns from left to right

@@ -15,7 +15,7 @@ function PresetRow({ preset }: {preset: TimerPreset}) {
     //useEffect will function after the render, so re runs everytime the running state changes from true to false and vice versa
     useEffect(() => {
         if(!running) return;//if running is false and not active, returns and does nothing much
-        const id = setInterval(() => setRemaining(r => r-1), 1000); //repeating timer and sets an interval of 1000ms, e -elapsed but the current state
+        const id = setInterval(() => setRemaining(r => r-1), 1000); //repeating timer and sets an interval of 1000ms, r -running but the current state
         return () => clearInterval(id);//stops and clears that particular interval function of the stopwatch
     }, [running]);//technically this unmounts the stopwatch 
     
